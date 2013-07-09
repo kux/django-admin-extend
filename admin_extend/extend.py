@@ -71,4 +71,4 @@ def extend_registered(extended_cls):
         admin.site.register(admin_cls._model_cls, admin_cls)
         return form_cls
     else:
-        raise ValueError("Extended class needs to be a ModelAdmin of Form")
+        raise ValueError("Extended class needs to be a ModelAdmin or Form")
