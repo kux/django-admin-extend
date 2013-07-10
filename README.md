@@ -16,7 +16,7 @@ However, django.contrib.auth.admin.UserAdmin uses the simple ```<select multiple
 is incredibly annoying to use.
 
 To be able to use ```filter_horizontal``` with ```UserAdmin``` you can use django-admin-extend
-in the admin module of one of the apps you wirte:
+in the admin module of one of the apps you write:
 
 
 ```
@@ -50,8 +50,12 @@ class ExtendedUserForm(registered_form(User)):
 ```
 
 The advantage of using ```registered_modeladmin``` over explicitly inheriting from
-the ```ModelAdmin``` you want to extend is the fact that multiple apps can override
+the ```ModelAdmin``` is the fact that multiple apps can override
 functionality and remain decoupled.
+
+**Note**: The order of the apps in the ```INSTALLED_APPS``` setting matters.
+The app that uses ```extend_registered``` needs to be **after** the app that first
+defines and registers the ```ModelAdmin```.
 
 The alternative would be to use explicit inheritance:
 
