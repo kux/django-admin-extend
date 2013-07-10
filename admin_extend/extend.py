@@ -38,6 +38,17 @@ def add_bidirectional_m2m(form_cls):
                         self.instance, related_manager).all()
 
         def save(self, commit=True):
+            """
+            Saves this ``form``'s cleaned_data into model instance
+            ``self.instance``.
+
+            If commit=True, then the changes to ``instance`` will be saved to the
+            database.  If ``instance`` is a new object then it will get saved to
+            the database even if commit=False
+
+            Returns ``instance``.
+            """
+
             instance = super(BidirectionalM2MForm, self).save(commit=False)
             force_save = self.instance.pk is None
             if force_save:
