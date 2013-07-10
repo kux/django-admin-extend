@@ -6,7 +6,7 @@ ModelAdmin classes that have already been registered by other apps.
 This is usually useful when the ```ModelAdmin``` you're altering is part of
 a third-party app that you can't/wouldn't want to fork.
 
-Usage example: extending model admins
+Extending model admins
 ====================================
 Let's assume we have a django project which uses ```django.contrib.auth```.
 
@@ -70,7 +70,7 @@ class App2UserAdmin(App1UserAdmin):
 But this creates a dependency between ```app2``` and ```app1```.
 
 
-Usage example: creating bidirectinal many to many fields
+Bidirectinal many to many fields
 ========================================================
 
 This is a generic mechanism for implementing an old
