@@ -42,9 +42,8 @@ def add_bidirectional_m2m(form_cls):
             force_save = self.instance.pk is None
             if force_save:
                 instance.save()
-            for m2m_field in self._get_bidirectinal_m2m_fields():
-                attr_name = '%s_set' % m2m_field
-                setattr(self.instance, attr_name, self.cleaned_data[m2m_field])
+            for m2m_field, related_manager in self._get_bidirectinal_m2m_fields():
+                setattr(self.instance, related_manager, self.cleaned_data[m2m_field])
             if commit:
                 if not force_save:
                     instance.save()
