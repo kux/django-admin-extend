@@ -53,7 +53,7 @@ The advantage of using ```registered_modeladmin``` over explicitly inheriting fr
 the ```ModelAdmin``` is the fact that multiple apps can override
 functionality and remain decoupled.
 
-**Note**: The order of the apps in the ```INSTALLED_APPS``` setting matters.
+**Note**: The order of in the ```INSTALLED_APPS``` setting matters.
 The app that uses ```extend_registered``` needs to be **after** the app that first
 defines and registers the ```ModelAdmin```.
 
@@ -74,7 +74,7 @@ class App2UserAdmin(App1UserAdmin):
 But this creates a dependency between ```app2``` and ```app1```.
 
 
-Bidirectinal many to many fields
+Bidirectional many to many fields
 ========================================================
 
 This is a generic mechanism for implementing an old
@@ -104,9 +104,9 @@ class ExtendedSiteAdminForm(add_bidirectional_m2m(registered_form(Site))):
         widget=FilteredSelectMultiple()
     )
 
-    def _get_bidirectinal_m2m_fields(self):
+    def _get_bidirectional_m2m_fields(self):
         return super(ExtendedSiteAdminForm, self).\
-            _get_bidirectinal_m2m_fields() + [('snippets', 'smartsnippet_set')]
+            _get_bidirectional_m2m_fields() + [('snippets', 'smartsnippet_set')]
 
 ```
 

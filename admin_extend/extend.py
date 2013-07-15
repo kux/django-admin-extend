@@ -24,16 +24,16 @@ def add_bidirectional_m2m(form_cls):
 
     class BidirectionalM2MForm(form_cls):
 
-        def _get_bidirectinal_m2m_fields(self):
+        def _get_bidirectional_m2m_fields(self):
             try:
-                return super(BidirectionalM2MForm, self)._get_bidirectinal_m2m_fields()
+                return super(BidirectionalM2MForm, self)._get_bidirectional_m2m_fields()
             except AttributeError:
                 return []
 
         def __init__(self, *args, **kwargs):
             super(BidirectionalM2MForm, self).__init__(*args, **kwargs)
             if self.instance.pk is not None:
-                for m2m_field, related_manager in self._get_bidirectinal_m2m_fields():
+                for m2m_field, related_manager in self._get_bidirectional_m2m_fields():
                     self.fields[m2m_field].initial = getattr(
                         self.instance, related_manager).all()
 
@@ -48,12 +48,11 @@ def add_bidirectional_m2m(form_cls):
 
             Returns ``instance``.
             """
-
             instance = super(BidirectionalM2MForm, self).save(commit=False)
             force_save = self.instance.pk is None
             if force_save:
                 instance.save()
-            for m2m_field, related_manager in self._get_bidirectinal_m2m_fields():
+            for m2m_field, related_manager in self._get_bidirectional_m2m_fields():
                 setattr(self.instance, related_manager, self.cleaned_data[m2m_field])
             if commit:
                 if not force_save:
