@@ -11,6 +11,7 @@ setup(
     author='Ioan Alexandru Cucu',
     author_email='alexandruioan.cucu@gmail.com',
     url='https://github.com/kux/django-admin-extend',
+    download_url='https://github.com/kux/django-admin-extend/tarball/0.1',
     install_requires=('Django>=1.3',),
     packages=find_packages(),
     include_package_data=True,
